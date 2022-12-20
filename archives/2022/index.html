@@ -14,16 +14,20 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="You de Blog">
+  <meta name="description" content="Change And Challenge">
+<meta property="og:type" content="website">
+<meta property="og:title" content="You的个人站">
 <meta property="og:url" content="http://example.com/archives/2022/index.html">
-<meta property="og:site_name" content="You de Blog">
+<meta property="og:site_name" content="You的个人站">
+<meta property="og:description" content="Change And Challenge">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="You-Jianyu">
 <meta name="twitter:card" content="summary">
@@ -41,7 +45,7 @@
   };
 </script>
 
-  <title>归档 | You de Blog</title>
+  <title>归档 | You的个人站</title>
   
 
 
@@ -92,10 +96,9 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">You de Blog</h1>
+      <h1 class="site-title">You的个人站</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">Change And Challenge</p>
   </div>
 
   <div class="site-nav-right">
@@ -114,9 +117,24 @@
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">0</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">0</span></a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">1</span></a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
 
   </li>
   </ul>
@@ -241,8 +259,10 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="You-Jianyu"
+      src="/images/avatar.gif">
   <p class="site-author-name" itemprop="name">You-Jianyu</p>
-  <div class="site-description" itemprop="description"></div>
+  <div class="site-description" itemprop="description">Change And Challenge</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -255,6 +275,20 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/you-jianyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;you-jianyu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:you_jianyu@163.com" title="E-Mail → mailto:you_jianyu@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/7782626193" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;7782626193" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/gooe_loved" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;gooe_loved" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
 
 
 
@@ -276,7 +310,7 @@
 
 <div class="copyright">
   
-  &copy; 
+  &copy; 2022-12 – 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
@@ -315,6 +349,8 @@
 <script src="/js/next-boot.js"></script>
 
 
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
 
 
   
