@@ -1,43 +1,590 @@
-const { Component } = require('inferno');
-const classname = require('hexo-component-inferno/lib/util/classname');
-const Head = require('./common/head');
-const Navbar = require('./common/navbar');
-const Widgets = require('./common/widgets');
-const Footer = require('./common/footer');
-const Scripts = require('./common/scripts');
-const Search = require('./common/search');
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/headk.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/headk.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-module.exports = class extends Component {
-    render() {
-        const { site, config, page, helper, body } = this.props;
+<link rel="stylesheet" href="/css/main.css">
 
-        const language = page.lang || page.language || config.language;
-        const columnCount = Widgets.getColumnCount(config.widgets, config, page);
 
-        return <html lang={language ? language.substr(0, 2) : ''}>
-            <Head site={site} config={config} helper={helper} page={page} />
-            <body class={`is-${columnCount}-column`}>
-                <Navbar config={config} helper={helper} page={page} />
-                <section class="section">
-                    <div class="container">
-                        <div class="columns">
-                            <div class={classname({
-                                column: true,
-                                'order-2': true,
-                                'column-main': true,
-                                'is-12': columnCount === 1,
-                                'is-8-tablet is-8-desktop is-8-widescreen': columnCount === 2,
-                                'is-8-tablet is-8-desktop is-6-widescreen': columnCount === 3
-                            })} dangerouslySetInnerHTML={{ __html: body }}></div>
-                            <Widgets site={site} config={config} helper={helper} page={page} position={'left'} />
-                            <Widgets site={site} config={config} helper={helper} page={page} position={'right'} />
-                        </div>
-                    </div>
-                </section>
-                <Footer config={config} helper={helper} />
-                <Scripts site={site} config={config} helper={helper} page={page} />
-                <Search config={config} helper={helper} />
-            </body>
-        </html>;
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="背景1993年随着通货膨胀程度进一步加深，全面的宏观调控展开。市场利率上行使得国债券价格下降甚至低于发行价，新发行的债券无人问津，原有通过承购包销销售债券和利率市场化改革的方法难以让国债顺利发行。国债市场化改革陷入停滞，为完成国债发行任务，国债发行恢复为原先的组织认购和行政摊派，政府开始对银行存款和国债进行贴息和保值贴补。 针对93年国债，其3年期和5年期利率由12.52%和14.06%调高至13">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于“327”国债事件的10个问题">
+<meta property="og:url" content="http://example.com/2022/12/20/%E5%85%B3%E4%BA%8E%E2%80%9C327%E2%80%9D%E5%9B%BD%E5%80%BA%E4%BA%8B%E4%BB%B6%E7%9A%8410%E4%B8%AA%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="游的个人站">
+<meta property="og:description" content="背景1993年随着通货膨胀程度进一步加深，全面的宏观调控展开。市场利率上行使得国债券价格下降甚至低于发行价，新发行的债券无人问津，原有通过承购包销销售债券和利率市场化改革的方法难以让国债顺利发行。国债市场化改革陷入停滞，为完成国债发行任务，国债发行恢复为原先的组织认购和行政摊派，政府开始对银行存款和国债进行贴息和保值贴补。 针对93年国债，其3年期和5年期利率由12.52%和14.06%调高至13">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-20T12:51:26.835Z">
+<meta property="article:modified_time" content="2022-12-20T13:02:16.506Z">
+<meta property="article:author" content="You-Jianyu">
+<meta property="article:tag" content="国债期货">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/12/20/%E5%85%B3%E4%BA%8E%E2%80%9C327%E2%80%9D%E5%9B%BD%E5%80%BA%E4%BA%8B%E4%BB%B6%E7%9A%8410%E4%B8%AA%E9%97%AE%E9%A2%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>关于“327”国债事件的10个问题 | 游的个人站</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">游的个人站</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-guestbook">
+
+    <a href="/guestbook/" rel="section"><i class="fa fa-book fa-fw"></i>留言</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/20/%E5%85%B3%E4%BA%8E%E2%80%9C327%E2%80%9D%E5%9B%BD%E5%80%BA%E4%BA%8B%E4%BB%B6%E7%9A%8410%E4%B8%AA%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="You-Jianyu">
+      <meta itemprop="description" content="改变并挑战">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="游的个人站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          关于“327”国债事件的10个问题
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-20 20:51:26 / 修改时间：21:02:16" itemprop="dateCreated datePublished" datetime="2022-12-20T20:51:26+08:00">2022-12-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%91%E8%9E%8D%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">金融系列</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/12/20/%E5%85%B3%E4%BA%8E%E2%80%9C327%E2%80%9D%E5%9B%BD%E5%80%BA%E4%BA%8B%E4%BB%B6%E7%9A%8410%E4%B8%AA%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/12/20/%E5%85%B3%E4%BA%8E%E2%80%9C327%E2%80%9D%E5%9B%BD%E5%80%BA%E4%BA%8B%E4%BB%B6%E7%9A%8410%E4%B8%AA%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>1993年随着通货膨胀程度进一步加深，全面的宏观调控展开。市场利率上行使得国债券价格下降甚至低于发行价，新发行的债券无人问津，原有通过承购包销销售债券和利率市场化改革的方法难以让国债顺利发行。国债市场化改革陷入停滞，为完成国债发行任务，国债发行恢复为原先的组织认购和行政摊派，政府开始对银行存款和国债进行贴息和保值贴补。</p>
+<p>针对93年国债，其3年期和5年期利率由12.52%和14.06%调高至13.96%和15.86%，对3年期和5年期国债进行保值，保值贴补率由兑付时人民银行公布的保值补率计算。市场上国债保值和非保值的不同状态。同时保值公告在92年发行国债上仅作保值决定，具体保值方式尚未披露，国债价格的不确定性加大。</p>
+<span id="more"></span>
+
+<p>“327国债”指1992年发行1995年6月到期兑付的3年期国库券，由于市场对于政府是否会对327国债进行贴息和保值贴补存在分歧，多空双方代表“中经开”和“万国证券”针对该标的进行炒作博弈，分别建立多仓和空仓，在市场上发生激烈对抗，最终政府进行保值贴补，引得国债期货价格大幅上升。期货市场出现“多逼空”行情。</p>
+<h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><p><strong>Q1：1993年决定对国债进行贴息和保值贴补的原因？</strong></p>
+<p>1993年随着通货膨胀程度进一步加深，全面的宏观调控展开。市场利率上行使得国债券价格下降甚至低于发行价，新发行的债券无人问津，原有通过承购包销销售债券和利率市场化改革的方法难以让国债顺利发行。国债市场化改革陷入停滞，为完成国债发行任务，国债发行恢复为原先的组织认购和行政摊派，政府开始对银行存款和国债进行贴息和保值贴补。</p>
+<p><strong>Q2：政府对国债进行贴息和保值贴补的决策对国债和国债期货市场造成什么样的影响？</strong></p>
+<p>针对93年国债，其3年期和5年期利率由12.52%和14.06%调高至13.96%和15.86%，对3年期和5年期国债进行保值，保值贴补率由兑付时人民银行公布的保值补率计算。市场上国债保值和非保值的不同状态。同时保值公告在92年发行国债上仅作保值决定，具体保值方式尚未披露，国债价格的不确定性加大。</p>
+<p>国债收益率由原先的固定利率决定转变为由贴息率和保值贴补率决定，国债兑付收益率不确定性大大增加，相关的国债期货炒作空间加大。327事件中以中经开和万国为代表的多空双方则围绕是否会对1992年发行1995年6月到期兑付的3年期国债进行保值贴补建立多仓和空仓，在市场上发生激烈对抗，最终政府进行保值贴补，引得国债期货价格大幅上升。期货市场出现“多逼空”行情。</p>
+<p><strong>Q3：中经开做多缘由？</strong></p>
+<p>① 国家政策的需要：通过做多活跃国债一级市场，以二级市场带动一级市场，更好顺利地发行国债，同时避免国债破净</p>
+<p>② 国债市场的行情现实：银行资产金融结构调整下对国债存在需求；市场更加完善下，国债投资价值逐渐被大家认识</p>
+<p><strong>Q4：万国证券在327国债期货上的多空决策是怎么样的？</strong></p>
+<p>① 判断国内通胀得到基本控制，市场将会有新券上市，同时受保值贴补率不断上升刺激，基本面上分析当前327合约价格已经偏高，万国证券开始开设空仓，春节前持空仓量达到40万口</p>
+<p>② 国内通胀并未被控制，保值贴补率连创新高，总部判断下月保值贴补率将回落，没有选择平仓操作，2月中旬空仓量达到87万口</p>
+<p>③ 操作策略转变为“不再开新仓，逐渐平仓出局”。但17日仍新开空仓42万口，多空操作决策已经偏离基本面分析，同时放弃了期货的对冲和风险控制机制，企图以资金实力决定期货操作输赢</p>
+<p>④ 至22日，万国在采取积极减仓策略下，总空仓量仍达到144万口，同时其协议平仓未果</p>
+<p>⑤ 23日，万国采取高价位开空仓来阻止价格上升，空仓量增加40余万口；收盘前万国砸出2070万口空单将327合约价格锁定在147.9元</p>
+<p><strong>Q5：在出现巨额亏损的状况下，万国证券采取的自救措施为什么没有成效？</strong></p>
+<p>① 万国企图以资金实力决定期货操作输赢，通过新开空仓的方式企图使多方爆仓，但多头行情已经确立，市场多头资金能够承接万国的空单，同时空单数量已经超过了92年3月现券总量，空方交割兑付使会导致期货价格上升。新开空单打压价格的决策反倒使万国陷入更大的危机</p>
+<p>② 18日会议拟定的协议平仓、转让合约、寻求减仓的基本解决方案实施不顺，犹豫迟疑中万国仍旧保持做空形势，多方上拉价位打击空方减仓，即使万国能够部分平仓，其也为打压价格而开更多的新空单付出更大的代价</p>
+<p>③ 23日最后8分钟交易遭到取消，万国最后的努力失败，万国证券濒临破产</p>
+<p><strong>Q6：“327事件”中辽国发充当的角色是什么？</strong></p>
+<p>327事件初，辽国发通过收购控制金融机构分散从事国债期货业务，与万国证券合仓做空327合约；后辽国发选择“空翻多”降低亏损，将空单移仓到无锡国泰规避债务，通过M16席位透支开设空仓，致使其在327合约上违约交收形成巨额债务。辽国发债务无法得到清偿，证券结算系统正常结算交收受到严重威胁，在一定程度上制约了上海证券市场的发展。</p>
+<p><strong>Q7：上交所尉文渊对最后的8分钟交易结果的考虑？</strong></p>
+<p>①  万国证券违规交易：上海证券交易所在国债期货交易规则上现行保证金控制和持仓限额两大机制，其中保证金控制方面采取“逐日盯市”而非“逐笔盯市”；虽有持仓限额，但市场上借席位开仓已成风气；国债期货交易缺乏涨跌停板制度。万国证券最后8分钟的空单没有足够的保证金，同时也大大超出了上交所的持仓限额规定</p>
+<p>②  避免市场发生系统性风险：如若取消最后的交易，万国将面临破产，其后可能引发挤兑，波及其他证券公司进而冲击证券整个市场</p>
+<p><strong>Q8：327国债事件暴露出来当时国债期货试点缺陷有哪些？</strong></p>
+<p>① 期货市场需要与现货市场相匹配，当时国内债券市场规模较小，市场对利用国债期货进行套期保值的需求不足；在现货不满足期货交割需求时容易出现市场操纵以及极端投机。327事件中“多逼空”是其特征，空方大量空单，即使交割也没有足够的国债现货进行交收</p>
+<p>② 在交易制度上存在设计缺陷，进行国债期货交易的保证金比例低，这为利用资金优势操纵市场提供了可能，容易出现逼空行情；“逐日盯市”的保证金控制使得每日结算时可能以及出现了巨大的资金亏损，不利于证券市场结算，极端下可能造成市场崩溃；没有实行涨跌停板制度和大户报告制度，在市场行情波动剧烈情况下，没有涨跌停板来限制期货价格，同时针对合约持仓大户没有合适的报告制度，极端情况下少数大户持有大量合约容易造成合约风险集聚；虽然有持仓限额，但是没有有效的制度法规制约移仓，借席位等行为，容易出现超仓</p>
+<p>③ 信息披露不规范，国债期货成为“消息市”牺牲品，对327国债行情影响关键的保值贴补率等信息在还未披露时就被市场上部分投资者知晓，其他投资者消息滞缓，信息不对称下多空双方分歧严重，致使327国债引发严重后果</p>
+<p><strong>Q9：试点时期，国内国债期货市场与其他国家国债期货市场存在多大的差距，为什么国内试行国债期货与理想存在巨大差距，最终导致国债期货夭折？</strong></p>
+<p>① 国内国债现货市场规模不大，投机氛围浓重；外国国债期货发展时期长，市场规模大，合约交易活跃，国债现货市场规模、品种、流动性等方面都要明显优于当时国内市场</p>
+<p>② 利率市场化机制不完善，政府行政控制利率变动不能及时适应市场；国外市场化程度深，部分国家高度市场化，利率变动受到行政干预程度小，对国债期现货价格影响不大</p>
+<p>③ 国债期货市场法律法规不完善，国债期货长期在无法可依的市场下运行，同时交易所监管职能没有得到有效履行；如美国国债期货市场，通过“三级管理体制”将政府监管机构、行业协会组织和期货交易所自我监管三者结合，强调政府干预并通过加强立法来管理期货市场。</p>
+<p>④ 国内国债期货保证金和标的物的合约设计上存在缺陷，保证金按照票面价值收取，同时收取比例过低，市场风险易被放大，期货合约标的为某一年发行国债或某一特定国债，交割品种、规模有限；国际上国债期货按照合约市场价格一定比例收取，在市场价格上升时保证金收取金额也会随之上升，利于控制风险，国际多采用最便宜可交割债券进行交割，克服单一交割品种规模有限问题，在一定程度避免市场操纵行为</p>
+<p><strong>Q10：十八年后国债期货重启，与当初相比，国内国债期货的发展基础有哪些改变？</strong></p>
+<p>① 国债市场化发行机制成熟，二级市场交易活跃，国债规模进一步扩大，期货市场与现货市场相匹配</p>
+<p>② 利率市场化程度加深，行政干预影响小</p>
+<p>③ 国内期货市场相关法律法规完善，监管体系改革，交易受到严格监管</p>
+<p>④ 合约设计与运行上，国债保证金比例提高，以合约价格为基础是收取；交割品种扩大到其他国债上，不再局限于单一品种；实行涨跌停板制度和大户报告制度		</p>
+<p>​                                                   <em>本文回答据 陆一《中国赌金者——327事件始末》及网络资料整理</em></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9B%BD%E5%80%BA%E6%9C%9F%E8%B4%A7/" rel="tag"># 国债期货</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/12/20/%E6%9D%AD%E5%B7%9E%E8%89%AF%E6%B8%9A%E9%B9%BF%E8%8B%91/" rel="prev" title="杭州良渚鹿苑">
+      <i class="fa fa-chevron-left"></i> 杭州良渚鹿苑
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
     }
-};
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-amp-A"><span class="nav-number">2.</span> <span class="nav-text">Q&amp;A</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="You-Jianyu"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">You-Jianyu</p>
+  <div class="site-description" itemprop="description">改变并挑战</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/you-jianyu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;you-jianyu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:you_jianyu@163.com" title="E-Mail → mailto:you_jianyu@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/7782626193" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;7782626193" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/150502055?spm_id_from=333.1007.0.0" title="BiliBili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;150502055?spm_id_from&#x3D;333.1007.0.0" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>BiliBili</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-tree"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">游建宇</span>
+</div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'IcZgdnkdVxuRF1QkyHYzx7Tf-gzGzoHsz# Your leancloud application appid',
+      appKey     : 'h8ImzKP70WCE7yOIiKN8hmUr# Your leancloud application appkey',
+      placeholder: "欢迎留言指正与交流...",
+      avatar     : 'identicon',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
