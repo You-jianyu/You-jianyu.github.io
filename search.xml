@@ -90,6 +90,8 @@
     <content><![CDATA[<p>清单：</p>
 <p>打发时间……</p>
 <p>1：HoloCubic小电视（√）</p>
+<span id="more"></span>
+
 <img src="../images/DIY/12.jpg" alt="12" style="zoom: 50%;">
 
 <p>2：Electronbot机器人（2022.10 - ……）</p>
@@ -103,7 +105,7 @@
 
 
 
-<span id="more"></span>
+
 
 ]]></content>
       <categories>
