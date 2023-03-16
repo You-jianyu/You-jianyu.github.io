@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>欢迎来到 游建宇的个人站</title>
-    <url>/2022/12/20/%E6%AC%A2%E8%BF%8E/</url>
-    <content><![CDATA[<p>2022年12月20日，个人站建站成功。</p>
-<p>至于这个博客用来发布什么内容，我还没有想好……</p>
+    <title>DIY 清单</title>
+    <url>/2023/02/24/DIY/</url>
+    <content><![CDATA[<p>清单：</p>
+<p>打发时间……</p>
+<p>1：HoloCubic小电视（√）</p>
+<span id="more"></span>
+
+<img src="../images/DIY/12.jpg" alt="12" style="zoom: 50%;">
+
+<p>2：Electronbot机器人（2022.10 - ……）</p>
+<p>3：悬浮时钟(2023.02 - 2023.03.11)（√）</p>
+<img src="../images/DIY/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20230316232223.jpg" alt="微信图片_20230316232223" style="zoom:25%;">
+
+
+
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+<iframe src="//player.bilibili.com/player.html?aid=567864914&bvid=BV1Mv4y1h7rk&cid=1033708682&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe></div>
+
+
+
+
+
 ]]></content>
+      <categories>
+        <category>DIY</category>
+      </categories>
+      <tags>
+        <tag>do it yourself</tag>
+      </tags>
   </entry>
   <entry>
     <title>杭州良渚鹿苑</title>
@@ -85,37 +109,6 @@
       </tags>
   </entry>
   <entry>
-    <title>DIY 清单</title>
-    <url>/2023/02/24/DIY/</url>
-    <content><![CDATA[<p>清单：</p>
-<p>打发时间……</p>
-<p>1：HoloCubic小电视（√）</p>
-<span id="more"></span>
-
-<img src="../images/DIY/12.jpg" alt="12" style="zoom: 50%;">
-
-<p>2：Electronbot机器人（2022.10 - ……）</p>
-<p>3：悬浮时钟(2023.02 - 2023.03.11)（√）</p>
-<img src="../images/DIY/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20230316232223.jpg" alt="微信图片_20230316232223" style="zoom:25%;">
-
-
-
-<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
-<iframe src="//player.bilibili.com/player.html?aid=567864914&bvid=BV1Mv4y1h7rk&cid=1033708682&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe></div>
-
-
-
-
-
-]]></content>
-      <categories>
-        <category>DIY</category>
-      </categories>
-      <tags>
-        <tag>do it yourself</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>次贷危机的内在逻辑</title>
     <url>/2023/02/24/%E6%AC%A1%E8%B4%B7%E5%8D%B1%E6%9C%BA%E7%9A%84%E5%86%85%E5%9C%A8%E9%80%BB%E8%BE%91/</url>
     <content><![CDATA[<p>2000年美国互联网泡沫破裂，科技退潮情况下美国经济失去高速增长动力。为应对经济衰退，美联储通过减息等宽松的货币政策刺激经济，随着联邦基金利率和个人住房贷款利率不断下降，市场流动性进一步增强，美国房地产市场迎来繁荣，全国房价不断上升，房贷发放规模空前。</p>
@@ -131,6 +124,13 @@
       <tags>
         <tag>次贷危机</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>欢迎来到 游建宇的个人站</title>
+    <url>/2022/12/20/%E6%AC%A2%E8%BF%8E/</url>
+    <content><![CDATA[<p>2022年12月20日，个人站建站成功。</p>
+<p>至于这个博客用来发布什么内容，我还没有想好……</p>
+]]></content>
   </entry>
   <entry>
     <title>杭州淳安千岛湖</title>
